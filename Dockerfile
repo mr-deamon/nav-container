@@ -57,12 +57,12 @@ RUN apt-get update \
 # Use tini as our image init process
 ENTRYPOINT ["/usr/bin/tini", "--", "/docker-entrypoint.sh"]
 
-# As Debian has no postgres-12 client, fetch it from Postgresql.org instead
+# As Debian has no postgres-14 client, fetch it from Postgresql.org instead
 RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ buster-pgdg main" >> /etc/apt/sources.list.d/pgdg.list
 RUN wget  https://www.postgresql.org/media/keys/ACCC4CF8.asc -O /tmp/ACCC4CF8.asc \
 	&& apt-key add /tmp/ACCC4CF8.asc \
 	&& apt-get update \ 
-	&& apt-get -y install postgresql-client-12 \
+	&& apt-get -y install postgresql-client-14 \
 	&& rm /tmp/ACCC4CF8.asc
 
 
